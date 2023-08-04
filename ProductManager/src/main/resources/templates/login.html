@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Please Log In</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/login.css}">
+</head>
+
+<body>
+    <div class="container">
+        <form th:action="@{/login}" method="post" class="form">
+            <!-- <div class="if-else">
+                    <div th:if="${param.error}"> Invalid username and password. </div>
+                    <div th:if="${param.logout}"> You have been logged out. </div>
+                </div> -->
+            <!-- header -->
+            <div class="header">
+                <div class="col-half">
+                    <a href="">ĐĂNG NHẬP</a>
+                </div>
+                <div class="col-half">
+                    <a href="/register">ĐĂNG KÝ</a>
+                </div>
+            </div>
+
+            <!-- body -->
+            <div class="body">
+                <div>
+                    <label for="">Tên đăng nhập</label>
+                    <br><input class="form-input" type="text" name="username" placeholder="Tên đăng nhập" />
+                </div>
+                <div>
+                    <label for="">Mật khẩu</label>
+                    <br><input class="form-input" type="password" name="password" placeholder="Mật khẩu" />
+                </div>
+                <div>
+                    <input class="login" type="submit" value="ĐĂNG NHẬP BẰNG TÀI KHOẢN" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

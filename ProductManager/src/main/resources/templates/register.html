@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/register.css}">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="col-half">
+                <a href="/login">ĐĂNG NHẬP</a>
+            </div>
+            <div class="col-half">
+                <a href="">ĐĂNG KÝ</a>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="row">
+                <div class="col-half">
+                    <label for="">Họ tên</label>
+                    <br><input type="text" id="fullName" placeholder="Họ tên" />
+                </div>
+                <div class="col-half">
+                    <label for="">Tên đăng nhập</label>
+                    <br><input type="text" id="username" placeholder="Tên đăng nhập" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <label for="">Mật khẩu</label>
+                    <br><input type="password" id="password" placeholder="Mật khẩu" />
+                </div>
+                <div class="col-half">
+                    <label for="">Xác nhận lại mật khẩu</label>
+                    <br><input type="password" id="confimPassword" placeholder="Xác nhận lại mật khẩu" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <label for="">Số điện thoại</label>
+                    <br><input type="text" id="phoneNumber" placeholder="Số điện thoại" />
+                </div>
+                <div class="col-half">
+                    <label for="">Ngày sinh</label>
+                    <br><input type="date" id="dateOfBirth" placeholder="Ngày sinh" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <label for="">Giới tính</label>
+                    <br><input type="text" id="sex" placeholder="Giới tính" />
+                </div>
+            </div>
+            <div class="register">
+                <br><button onclick="signup()">ĐĂNG KÝ</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function signup() {
+
+        if (!checkPassword()) {
+            throw new Error("Mat khau khong dung");
+        };
+
+        var registerApi = 'http://localhost:8080/register';
+
+        var fullName = document.getElementById("fullName").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+        var dateOfBirth = document.getElementById("dateOfBirth").value;
+        var sex = document.getElementById("sex").value;
+
+
+        var userData = {
+            fullName: fullName,
+            username: username,
+            password: password,
+            phoneNumber: phoneNumber,
+            dateOfBirth: dateOfBirth,
+            sex: sex
+        };
+        console.log(userData);
+
+
+        fetch(registerApi, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        })
+            .then((response) => {
+                if (response.status == 200) {
+                    alert("Bạn đã đăng ký thành công tài khoản thành công!");
+                    window.location.href = "login";
+                }
+                else {
+                    alert("Tên người dùng đã tồn tại");
+                }
+            })
+            .catch((error) => {
+                alert("Lỗi trong quá trình chạy!");
+            });
+    }
+
+    function checkPassword() {
+
+        var password = document.getElementById("password").value;
+        var confimPassword = document.getElementById("confimPassword").value;
+
+        if (password !== confimPassword) {
+            alert("Mật khẩu không khớp vui lòng nhập lại!");
+            return false;
+        }
+
+        return true;
+
+    }
+</script>
+
+</html>

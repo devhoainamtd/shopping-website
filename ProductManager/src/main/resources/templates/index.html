@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Manager</title>
+</head>
+<body>
+    <div class="container" align = "center">
+        <h1>Product Manager</h1>
+        <div>
+            <a href="new">Create New Product</a>
+        </div>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Thương hiệu</th>
+                    <th>Xuất sứ</th>
+                    <th>Giá tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${listProducts}">
+                    <td th:text="${product.id}">ID</td>
+                    <td th:text="${product.productName}">Tên sản phẩm</td>
+                    <td th:text="${product.brand}">Thương hiệu</td>
+                    <td th:text="${product.madeIn}">Xuất xứ</td>
+                    <th th:text="${product.price}">Giá tiền</th>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>
