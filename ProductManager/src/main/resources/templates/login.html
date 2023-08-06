@@ -7,39 +7,150 @@
 </head>
 
 <body>
-    <div class="container">
-        <form th:action="@{/login}" method="post" class="form">
-            <!-- <div class="if-else">
-                    <div th:if="${param.error}"> Invalid username and password. </div>
-                    <div th:if="${param.logout}"> You have been logged out. </div>
-                </div> -->
-            <!-- header -->
-            <div class="header">
-                <div class="col-half">
-                    <a href="">ĐĂNG NHẬP</a>
-                </div>
-                <div class="col-half">
-                    <a href="/register">ĐĂNG KÝ</a>
-                </div>
-            </div>
 
-            <!-- body -->
-            <div class="body">
-                <div>
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="header">
+            <div>
+                <a href="">ĐĂNG NHẬP</a>
+            </div>
+            <div>
+                <a href="">ĐĂNG KÝ</a>
+            </div>
+        </div>
+        <div class="wapper">
+            <div class="form-box login">
+                <h2>Login</h2>
+                <form th:action="@{/login}" method="post" class="form">
+                    <div class="input-box">
+                        <label for="">Tên đăng nhập</label>
+                        <div>
+                            <span class="icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <input class="form-input" type="text" name="username" placeholder="Tên đăng nhập" />
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Mật khẩu</label>
+                        <div>
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <input class="form-input" type="password" name="password" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
+                    <div class="remember-forgot">
+                        <label for=""><input type="checkbox">Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <input class="btn-login" type="submit" value="ĐĂNG NHẬP BẰNG TÀI KHOẢN" />
+                    <div class="login-register">
+                        <p>Don't have an account?
+                            <a href="#" class="register-link">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <div class="input-box">
+                    <label for="">Họ tên</label>
+                    <div>
+                        <input type="text" id="fullName" placeholder="Họ tên" />
+                    </div>
+                </div>
+                <div class="input-box">
                     <label for="">Tên đăng nhập</label>
-                    <br><input class="form-input" type="text" name="username" placeholder="Tên đăng nhập" />
+                    <div>
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                        <input type="text" id="username" placeholder="Tên đăng nhập" />
+                    </div>
                 </div>
-                <div>
+                <div class="input-box">
                     <label for="">Mật khẩu</label>
-                    <br><input class="form-input" type="password" name="password" placeholder="Mật khẩu" />
+                    <div>
+                        <span>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <input type="password" id="password" placeholder="Mật khẩu" />
+                    </div>
                 </div>
-                <div>
-                    <input class="login" type="submit" value="ĐĂNG NHẬP BẰNG TÀI KHOẢN" />
+                <div class="input-box">
+                    <label for="">Xác nhận lại mật khẩu</label>
+                    <div>
+                        <span>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <input type="password" id="confimPassword" placeholder="Xác nhận lại mật khẩu" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="">Số điện thoại</label>
+                    <div>
+                        <span>
+                            <ion-icon name="call-outline"></ion-icon>
+                        </span>
+                        <input type="text" id="phoneNumber" placeholder="Số điện thoại" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="">Ngày sinh</label>
+                    <div>
+                        <span>
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </span>
+                        <input type="date" id="dateOfBirth" placeholder="Ngày sinh" />
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="">Giới tính</label>
+                    <div>
+                        <span>
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </span>
+                        <input type="text" id="sex" placeholder="Giới tính" />
+                    </div>
+                </div>
+                <button onclick="signup()">ĐĂNG KÝ</button>
+                <div class="login-register">
+                    <p>Don't have an account?
+                        <a href="#" class="login-link">Register</a>
+                    </p>
                 </div>
             </div>
-
-        </form>
+        </div>
     </div>
+    <!-- register -->
+
+    <script>
+        const wapper = document.querySelector('.wapper');
+        const loginLink = document.querySelector('.login-link');
+        const registerLink = document.querySelector('.register-link');
+        const btnPopup = document.querySelector('.btnLogin-popup');
+        registerLink.addEventListener('click', () => {
+            wapper.classList.add('active');
+        });
+        loginLink.addEventListener('click', () => {
+            wapper.classList.remove('active');
+        })
+        btnPopup.addEventListener('click', () => {
+            wapper.classList.add('active-popup');
+        });
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
