@@ -1,38 +1,329 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Product Manager</title>
+    <link rel="stylesheet" th:href="@{/resources/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
+
 <body>
-    <div class="container" align = "center">
-        <h1>Product Manager</h1>
-        <div>
-            <a href="new">Create New Product</a>
+
+    <div class="main">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: red !important">
+            <div class="container">
+                <a class="navbar-brand logo" href="#">Logo</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" style="color: #fff; font-size: 14px;" href="#">TRANG CHỦ <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" style="color: #fff; font-size: 14px;" href="#" id="navbarDropdown">
+                                QUẦN NAM
+                            </a>
+                            <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Quần tây</a>
+                                <a class="dropdown-item" href="#">Quần jean</a>
+                                <a class="dropdown-item" href="#">Quần kaki</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" style="color: #fff; font-size: 14px;" href="#" id="navbarDropdown">
+                                ÁO NAM
+                            </a>
+                            <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Áo phông</a>
+                                <a class="dropdown-item" href="#">Áo sơ mi</a>
+                                <a class="dropdown-item" href="#">Áo blazer</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" style="color: #fff; font-size: 14px;" href="#content">GIỚI
+                                THIỆU</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #fff; font-size: 14px;" href="#contact">LIÊN HỆ</a>
+                        </li>
+                    </ul>
+                    <div class="header-right">
+                            <button>
+                                <span class="icon">
+                                    <ion-icon name="search-outline"></ion-icon>
+                                </span>
+                            </button>
+                            <button class="btnLogin-popup">
+                                <span class="icon">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </span>
+                            </button>
+                            <button>
+                                <span class="icon">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </span>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="https://cdn0918.cdn4s1.com/media/banner/Untitled-1.png"
+                        alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://cdn0918.cdn4s1.com/media/banner/Untitled-2.png"
+                        alt="Second slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Thương hiệu</th>
-                    <th>Xuất sứ</th>
-                    <th>Giá tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product : ${listProducts}">
-                    <td th:text="${product.id}">ID</td>
-                    <td th:text="${product.productName}">Tên sản phẩm</td>
-                    <td th:text="${product.brand}">Thương hiệu</td>
-                    <td th:text="${product.madeIn}">Xuất xứ</td>
-                    <th th:text="${product.price}">Giá tiền</th>
-                </tr>
-            </tbody>
+        <div id="content" class="container" style="margin-top: 115px">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 style="padding-bottom: 30px;">Logo</h1>
+                    <h4>Chính sách cửa hàng</h4>
+                    <ul class="list">
+                        <li>Kiểm Trả Thử trước khi thanh toán</li>
+                        <li>Hỗ trợ Đổi Trả lên đến 30 Ngày</li>
+                        <li>Hoàn Tiền Ngay Trong 30 Phút nếu hàng lỗi hỏng (vui lòng quay video Unbox) </li>
+                        <li>FREESHIP đơn Trên 200K</li>
+                        <li>Tự Hào Sản xuất Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Các mẫu quần tây nam hàng hiệu, chính hãng tại Logo</h4>
+                    <p>Thương hiệu JBAGY chuyên các loại quần tây nam có nhiều form dáng phù hợp nhu cầu của phái mạnh.
+                        Dưới đây là các sản phẩm thời trang nổi bật, bán chạy.</p>
+                    <p>
+                        <strong>Quần tây cạp cao nam</strong>
+                        là một sản phẩm được thiết kế với phong cách đơn giản nhưng lại rất sang trọng và lịch lãm. Với
+                        cạp cao, chiếc quần sidetab Hàn Quốc này giúp tôn lên vóc dáng của cậu, đặc biệt là cho những
+                        chàng trai có chiều cao khiêm tốn.
+                    </p>
+                    <p>
+                        Không chỉ vậy, sản phẩm còn giúp giấu đi các khuyết điểm cần được che đi, tạo cảm giác tự tin và
+                        thoải mái khi diện trang phục.
+                    </p>
+                    <p>
+                        Được cắt may từ chất liệu cotton Hàn chất lượng cao cấp, quần sidetab nam mang lại sự thoáng
+                        mát, dễ chịu cho người mặc suốt cả ngày. Chất liệu này còn giúp cho sản phẩm đứng form, hạn chế
+                        nhăn nhúm khi sử dụng trong thời gian dài.
+                    </p>
+                    <img style="display: block; margin: auto; margin-bottom: 20px;"
+                        src="https://cdn0918.cdn4s1.com/media/quan-tay-nam-jbagy/quan-tay-nam-jbagy-sidetab-cap-cao.jpg"
+                        alt="">
+                    <p>
+                        <strong>Quần tây nam dáng baggy Hàn Quốc</strong>
+                        trở thành xu hướng thời trang mới được ưa chuộng trong giới trẻ. Nhờ vào kiểu dáng thiết kế rộng
+                        rãi mà quần âu baggy nam mang đến sự thoải mái và phong cách, giúp cho cho người mặc có sự linh
+                        hoạt khi vận động.
+                    </p>
+                    <p>
+                        <strong>Quần baggy nam ống suông</strong>
+                        được may từ chất liệu vải tăm Vintex đai xanh, sản phẩm mềm mịn, co giãn tốt và độ bền cao. Loại
+                        quần này có thể mix and match tốt với áo phông hoặc áo khoác bomber, tạo nên bộ đồ phong cách
+                        năng động, trẻ trung và đầy cá tính.
+                    </p>
+                    <img style="display: block; margin: auto; margin-bottom: 20px;"
+                        src="https://cdn0918.cdn4s1.com/media/quan-tay-nam-jbagy/quan-tay-nam-jbagy-ong-rong.jpg"
+                        alt="">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><strong>Cách lựa chọn quần tây nam phù hợp với từng vóc dáng</strong></h4>
+                        <p>
+                            Khi lựa chọn quần tây nam, việc chọn size và kiểu dáng phù hợp với vóc dáng là rất quan
+                            trọng. Sau đây là vài gợi ý từ LOGO:
+                        </p>
+                        <p>
+                            <strong>Dành cho dáng người gầy, chân thon</strong>
+                            <br>Đối với các chàng trai có vóc dáng gầy thì không nên chọn những thiết kế ôm sát hoặc quá
+                            rộng. Những chiếc quần âu ống đứng sẽ là một lựa chọn hoàn hảo, giúp tạo cảm giác thon gọn
+                            và cân đối hơn cho dáng người của cậu.
+                        </p>
+                        <p>
+                            Cậu cũng có thể chọn mua quần có họa tiết kẻ caro vuông to bản, vì họa tiết này giúp tạo cảm
+                            giác đầy đặn và cân đối hơn cho dáng người gầy như cậu.
+                        </p>
+                        <p>
+                            <strong>Dành cho dáng người cân đối</strong>
+                            <br>Với phái mạnh có vóc dáng cân đối, cậu có thể diện các loại thiết kế quần tây nam khác
+                            nhau mà vẫn đẹp và thời trang. Hãy thử mix and match quần tây cùng sơ mi hay áo thun ngắn
+                            tay để tạo nên set đồ trẻ trung, sành điệu và lịch lãm.
+                        </p>
+                        <p>
+                            <strong>Dành cho người chân cong</strong>
+                            <br>Các anh chàng có chân cong, hình vòng kiềng muốn che đi khuyết điểm đó thì có thể chọn
+                            quần âu nam ống rộng. Bên trên, cậu có thể phối cùng áo thun năng động hoặc áo khoác blazer
+                            thời thượng, thanh lịch.
+                        </p>
+                        <p>
+                            Với set đồ này, nó sẽ giúp cậu trông ấn tượng hơn và không còn phải e ngại về chân cong
+                            trong mắt người khác.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>
+                            <strong>
+                                Kết luận
+                            </strong>
+                        </h4>
+                        <p>Tổng kết lại, việc chọn một sản phẩm quần tây nam phù hợp với dáng người rất quan trọng để
+                            tôn lên nét lịch lãm, nam tính và thu hút của các bạn nam. Cậu nên lựa chọn các thiết kế
+                            quần thời trang phù hợp với vóc dáng của mình. Hy vọng rằng những mẫu quần âu nam đẹp mà
+                            LOGO đã giới thiệu trên thì cậu có thể dễ dàng chọn được sản phẩm phù hợp nhất.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        </table>
+        <footer id="contact" style="background-color: rgb(5, 4, 4);">
+            <div class="container" style="color: #fff; height: 350px;">
+                <div class="row" style="padding-top: 20px;">
+                    <div class="col-md-4">
+                        <h1>LOGO</h1>
+                        <h6>Về LOGO</h6>
+                        <h6>Liên hệ</h6>
+                        <h6>Blog</h6>
+                        <h6>Email: logo@gmail.com</h6>
+                        <h6>Hotline: 0987654321</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><strong>Tư vấn&chính sách</strong></h6>
+                        <h6>Hướng dẫn đặt hàng</h6>
+                        <h6>Hướng dẫn chọn size</h6>
+                        <h6>Chính sách đổi trả</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <h5><strong>LOGO luôn là sự lựa chọn hàng đầu!</strong></h5>
+                        <h6>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể
+                            nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa.</h6>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
+    <div class="modal-edit">
+        <div class="wapper">
+            <span class="icon-close">
+                <ion-icon name="close-outline"></ion-icon>
+            </span>
+            <div class="form-box login">
+                <h2>ĐĂNG NHẬP</h2>
+                <form th:action="@{/login}" method="post" class="form">
+                    <div class="input-box">
+                        <label for="">Tên đăng nhập</label>
+                        <div>
+                            <input class="form-input" type="text" name="username" placeholder="Tên đăng nhập" />
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="">Mật khẩu</label>
+                        <div>
+                            <input class="form-input" type="password" name="password" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
+                    <div class="remember-forgot">
+                        <label for=""><input type="checkbox">Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <input class="btn-login" type="submit" value="ĐĂNG NHẬP BẰNG TÀI KHOẢN" />
+                    <div class="login-register">
+                        <p>Don't have an account?
+                            <a href="#" class="register-link">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box register">
+                <h2>ĐĂNG KÝ</h2>
+                <div class="row">
+                    <div class="input-box col-md-6">
+                        <label for="">Họ tên</label>
+                        <div>
+                            <input type="text" id="fullName" placeholder="Họ tên" />
+                        </div>
+                    </div>
+                    <div class="input-box col-md-6">
+                        <label for="">Tên đăng nhập</label>
+                        <div>
+                            <input type="text" id="username" placeholder="Tên đăng nhập" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box col-md-6">
+                        <label for="">Mật khẩu</label>
+                        <div>
+                            <input type="password" id="password" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
+                    <div class="input-box col-md-6">
+                        <label for="">Xác nhận lại mật khẩu</label>
+                        <div>
+                            <input type="password" id="confimPassword" placeholder="Xác nhận lại mật khẩu" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-box col-md-6">
+                        <label for="">Số điện thoại</label>
+                        <div>
+                            <input type="text" id="phoneNumber" placeholder="Số điện thoại" />
+                        </div>
+                    </div>
+                    <div class="input-box col-md-6">
+                        <label for="">Ngày sinh</label>
+                        <div>
+                            <input type="date" id="dateOfBirth" placeholder="Ngày sinh" />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="">Giới tính</label>
+                    <div>
+                        <input type="text" id="sex" placeholder="Giới tính" />
+                    </div>
+                </div>
+                <div>
+                    <button onclick="signup()">ĐĂNG KÝ</button>
+                </div>
+                <div class="login-register">
+                    <p>Don't have an account?
+                        <a href="#" class="login-link">Register</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/resources/js/index.js}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script th:src="@{/resources/js/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/resources/js/bootstrap.js}"></script>
 </body>
+
 </html>
