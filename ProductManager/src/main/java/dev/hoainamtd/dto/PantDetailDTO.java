@@ -7,16 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class ProductDTO {
+public class PantDetailDTO {
 
-    private  Long id;
+    private Long id;
 
-    private String name;
+    private PantDTO pantDTO;
 
-    private String madeIn;
+    private ColorDTO colorDTO;
 
-    private String url;
+    private SizeDTO sizeDTO;
 
-    private float price;
+    private Long quantity;
 
 }

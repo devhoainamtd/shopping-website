@@ -1,14 +1,14 @@
 package dev.hoainamtd.service;
 
 import dev.hoainamtd.dto.ProductDTO;
-import dev.hoainamtd.model.Product;
 
 import java.util.List;
 
-public interface ProductService {
-    List<ProductDTO> listAll();
-    ProductDTO saveProduct(ProductDTO productDTO);
-    ProductDTO findProductById(Long id);
-    ProductDTO updateProduct(Long id, ProductDTO productDTO);
-    void delete(Long id);
+public interface ProductService<E extends ProductDTO> {
+    E saveE(E e);
+    E update(E e);
+    void delete(E e);
+    List<E> showListE();
+
+    boolean checkName(String name);
 }

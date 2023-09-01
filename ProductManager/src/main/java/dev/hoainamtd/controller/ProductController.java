@@ -1,7 +1,10 @@
 package dev.hoainamtd.controller;
 
-import dev.hoainamtd.dto.ProductDTO;
-import dev.hoainamtd.service.ProductService;
+import dev.hoainamtd.dto.*;
+import dev.hoainamtd.service.impl.PantDetailServiceImpl;
+import dev.hoainamtd.service.impl.PantServiceImpl;
+import dev.hoainamtd.service.impl.ShirtDetailServiceImpl;
+import dev.hoainamtd.service.impl.ShirtServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,32 +15,82 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/api/v1")
 public class ProductController {
     @Autowired
-    private ProductService productService;
+    private ShirtDetailServiceImpl shirtDetailService;
+    @Autowired
+    private PantDetailServiceImpl pantDetailService;
+    @Autowired
+    private ShirtServiceImpl shirtService;
+    @Autowired
+    private PantServiceImpl pantService;
+
     @GetMapping()
-    public String listProducts(Model model) {
-        List<ProductDTO> listProducts = productService.listAll();
-        model.addAttribute("listProducts", listProducts);
+    public String listProducts() {
         return "index";
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.findProductById(id));
-    }
-    @PostMapping("")
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
-        return new ResponseEntity<>(productService.saveProduct(productDTO), HttpStatus.CREATED);
+
+    @GetMapping("/administration")
+    public String administration(Model model) {
+
+        List<ShirtDTO> listShirts = shirtService.showListE();
+        List<PantDTO> listPants = pantService.showListE();
+
+        model.addAttribute("listShirts", listShirts);
+        model.addAttribute("listPants", listPants);
+
+        return "administration";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(productService.updateProduct(id, productDTO));
+    @PostMapping("/save/shirt")
+    public ResponseEntity<?> saveShirt(@org.springframework.web.bind.annotation.RequestBody RequestShirt requestBody) {
+
+        if (shirtService.checkName(requestBody.getShirtDTO().getName())) {
+            ShirtDTO shirtDTO = shirtService.saveE(requestBody.getShirtDTO());
+
+            List<ProductDetail> list = requestBody.getList();
+
+            for (ProductDetail detail : list) {
+                shirtDetailService.saveEntity(
+                        shirtDTO,
+                        detail.getSizeId(),
+                        detail.getColorId(),
+                        detail.getQuantity()
+                );
+            }
+
+            return new ResponseEntity<>("", HttpStatus.OK);
+
+        } else {
+
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        productService.delete(id);
+    @PostMapping("/save/pant")
+    public ResponseEntity<?> savePant(@org.springframework.web.bind.annotation.RequestBody RequestPant requestBody) {
+
+        if (pantService.checkName(requestBody.getPantDTO().getName())) {
+            PantDTO pantDTO = pantService.saveE(requestBody.getPantDTO());
+
+            for (ProductDetail detail : requestBody.getList()) {
+                pantDetailService.saveEntity(
+                        pantDTO,
+                        detail.getSizeId(),
+                        detail.getColorId(),
+                        detail.getQuantity()
+                );
+            }
+
+            return new ResponseEntity<>("", HttpStatus.OK);
+
+        } else {
+
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+
+        }
     }
+
 }

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/resources/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/administration.css}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #191919 !important;">
+        <div class="col-md-3" style="border-right: 2px solid #fff;">
+            <a class="navbar-brand" href="#" style="color: #fff;">
+                <span>
+                    <ion-icon name="grid-outline"></ion-icon>
+                </span>
+                <strong>
+                    Administrator
+                </strong>
+            </a>
+        </div>
+
+        <div class="col-md-9">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="color: #fff;">
+                            <span>
+                                <ion-icon name="arrow-back-outline"></ion-icon>
+                            </span>
+                            Vào trang web
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="height: 700px !important;">
+        <div class="row">
+            <div class="col-md-2" id="nav">
+                <div class="row row-style">
+                    <a href="" class="custom-link">
+                        <span><ion-icon name="home-outline"></ion-icon></span>
+                        Trang chủ Admin
+                    </a>
+                </div>
+                <div class="row row-style" id="clickableDiv">
+                    <a href="#" id="menu-product" class="colorChangeClick custom-link">
+                        <span><ion-icon name="layers-outline"></ion-icon></span>
+                        Quản trị sản phẩm
+                        <span><ion-icon name="caret-down-outline"></ion-icon></span>
+                    </a>
+                    <div class="subnav click">
+                        <div id="clickableDiv">
+                            <a href="#" class="colorChangeClick custom-link show-link" data-target="link1">
+                                <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                                Áo
+                            </a>
+                        </div>
+                        <div id="clickableDiv">
+                            <a href="#" class="colorChangeClick custom-link show-link " data-target="link2">
+                                <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                                Quần
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-style" id="clickableDiv">
+                    <a href="#" id="menu-product" class="colorChangeClick custom-link">
+                        <span><ion-icon name="person-circle-outline"></ion-icon></span>
+                        Cấu Hình User
+                        <span><ion-icon name="caret-down-outline"></ion-icon></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-10" style="border-left: 2px solid #191919; height: 700px;">
+                <!-- manager-shirt -->
+                <div id="link1" class="manager-shirt hidden">
+                    <div class="row row-style">
+                        <a href="#" style="color: #0007ff; ">
+                            <span><ion-icon name="home-outline"></ion-icon></span>
+                            Trang chủ Admin
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Quản trị sản phẩm
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Áo
+                        </a>
+                    </div>
+                    <div class="row" style="padding: 10px 0 10px 8px;">
+                        <div class="col-md-10">
+                            <input type="text" style="width: 400px; height: 40px; border-radius: 5px;"
+                                placeholder="Tìm kiếm">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary show-link" data-target="link3">
+                                <span><ion-icon name="add-outline"></ion-icon></span>
+                                Thêm mới
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 20px; text-align: center;">
+                        <table border="1px" style="width: 100%;">
+                            <thead style="height: 38.5px;">
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Nơi sản xuất</th>
+                                <th>Giá tiền</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="shirt : ${listShirts}">
+                                    <td th:text="${shirt.id}">Sản phẩm</td>
+                                    <td th:text="${shirt.name}">Sản phẩm</td>
+                                    <td th:text="${shirt.madeIn}">Nơi sản xuất</td>
+                                    <td th:text="${shirt.price}">Giá tiền</td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon">
+                                                <ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon" style="color: aqua;">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon" style="color: red;">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- add product -->
+                <div id="link3" class="add-product hidden">
+                    <div class="row row-style">
+                        <a href="#" style="color: #0007ff; ">
+                            <span><ion-icon name="home-outline"></ion-icon></span>
+                            Trang chủ Admin
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Quản trị sản phẩm
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Thêm mới sản phẩm
+                        </a>
+                    </div>
+                    <div class="row row-add" style="margin-top: 10px; padding: 10px 0;">
+                        <div class="col-md-12">
+                            <strong style="font-size: 20px;">
+                                THÔNG TIN CHUNG
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div class="col-md-4">
+                            <label for="">
+                                Lựa chọn sản phẩm muốn thêm:
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="" id="selecter">
+                                <option value="">option</option>
+                                <option value="shirt">Áo</option>
+                                <option value="pant">Quần</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div class="col-md-4">
+                            <label for="">Tên sản phẩm:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="product-name">
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div class="col-md-4">
+                            <label for="">Nơi sản xuất:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="production-site">
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div class="col-md-4">
+                            <label for="">Hình ảnh:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="image">
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div class="col-md-4">
+                            <label for="">Giá tiền:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="price-product">
+                        </div>
+                    </div>
+                    <div class="row row-add" style="margin-top: 10px; padding: 10px 0;">
+                        <div class="col-md-10">
+                            <strong>
+                                CHI TIẾT SẢN PHẨM
+                            </strong>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="save-product" class="btn btn-danger">
+                                Thêm sản phẩm
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row row-add">
+                        <div style="padding: 0 100px 0 20px;">
+                            <button id="add-variation" class="btn btn-primary">Thêm biến thể</button>
+                        </div>
+                        <div>
+                            <div id="variation-container" class="form-size-color">
+                                <div class="variation" style="border-bottom: 1px solid #c2c2c2;">
+                                    <label  style="padding-left: 30px;" for="">Kích thước: </label>
+                                    <select name="" id="" class="size" style="width: 80px;">
+                                        <option value="">select</option>
+                                        <option value="1">S</option>
+                                        <option value="2">M</option>
+                                        <option value="3">L</option>
+                                        <option value="4">XL</option>
+                                        <option value="5">XXL</option>
+                                    </select>
+                                    <label  style="padding-left: 90px;" for="">Màu sắc: </label>
+                                    <select name="" id="" class="color" style="width: 80px;">
+                                        <option value="">select</option>
+                                        <option value="1">Đen</option>
+                                        <option value="2">Xám</option>
+                                        <option value="3">Đỏ</option>
+                                    </select>
+                                    <label  style="padding-left: 90px;" for="">Số lượng: </label>
+                                    <input type="number" name="" id="" class="quantity" min="1" max="100" style="width: 80px;" required>
+                                    <a href="#" type="button" id="btn-delete-detail">
+                                        <span class="icon" style="padding-left: 20px; margin-top: 2px; color: red;">
+                                            <ion-icon name="trash-outline" style="margin-bottom: -5px;"></ion-icon>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- manager-pant -->
+                <div id="link2" class="manager-pant hidden">
+                    <div class="row row-style">
+                        <a href="#" style="color: #0007ff; ">
+                            <span><ion-icon name="home-outline"></ion-icon></span>
+                            Trang chủ Admin
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Quản trị sản phẩm
+                            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                            Quần
+                        </a>
+                    </div>
+                    <div class="row" style="padding: 10px 0 10px 8px;">
+                        <div class="col-md-10">
+                            <input type="text" style="width: 400px; height: 40px; border-radius: 5px;"
+                                placeholder="Tìm kiếm">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary show-link" data-target="link3">
+                                <span><ion-icon name="add-outline"></ion-icon></span>
+                                Thêm mới
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 20px; text-align: center;">
+                        <table border="1px" style="width: 100%;">
+                            <thead style="height: 38.5px;">
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Nơi sản xuất</th>
+                                <th>Giá tiền</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pant : ${listPants}">
+                                    <td th:text="${pant.id}">ID</td>
+                                    <td th:text="${pant.name}">Sản phẩm</td>
+                                    <td th:text="${pant.madeIn}">Nơi sản xuất</td>
+                                    <td th:text="${pant.price}">Giá tiền</td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon">
+                                                <ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon" style="color: aqua;">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">
+                                            <span class="icon" style="color: red;">
+                                                <ion-icon name="trash-outline"></ion-icon>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script th:src="@{/resources/js/jquery-3.7.0.min.js}"></script>
+    <script th:src="@{/resources/js/bootstrap.js}"></script>
+    <script th:src="@{/resources/js/administration.js}"></script>
+
+</body>
+
+</html>
